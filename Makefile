@@ -7,7 +7,11 @@ run:
 	ng serve
 
 component:
+ifeq ("$(name)", "")
 	ng generate component
+else
+	ng generate component components/$(name)
+endif
 
 test:
 	ng test
