@@ -1,4 +1,4 @@
-.PHONY: build run component test lint
+.PHONY: build run component service test lint
 
 build:
 	ng build
@@ -11,6 +11,13 @@ ifeq ("$(name)", "")
 	ng generate component
 else
 	ng generate component components/$(name)
+endif
+
+service:
+ifeq ("$(name)", "")
+	ng generate service
+else
+	ng generate service services/$(name)
 endif
 
 test:
