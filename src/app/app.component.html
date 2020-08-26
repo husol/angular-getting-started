@@ -38,7 +38,7 @@
         height: 60px;
         display: flex;
         align-items: center;
-        background-color: #1976d2;
+        background-color: #16151C;
         color: white;
         font-weight: 600;
     }
@@ -47,16 +47,8 @@
         margin: 0 16px;
     }
 
-    .card svg.material-icons path {
-        fill: #888;
-    }
-
-    .card-container .card:not(.highlight-card):hover .material-icons path {
-        fill: rgb(105, 103, 103);
-    }
-
-    .card.card.highlight-card span {
-        margin-left: 60px;
+    .main {
+        margin-top: 60px;
     }
 
     a,
@@ -97,16 +89,6 @@
         width: 1920px;
     }
 
-
-    /* Responsive Styles */
-    @media screen and (max-width: 767px) {
-
-        .card-container > *:not(.circle-link),
-        .card.highlight-card span {
-            margin-left: 72px;
-        }
-    }
-
 </style>
 
 <!-- Toolbar -->
@@ -116,12 +98,14 @@
       alt="Husol Logo"
       src="https://husol.org/img/logoHusol.png"
   />
-  <span>Welcome to {{title}}</span>
+  <nav>
+    <a routerLink="/dashboard">Dashboard</a>&nbsp;
+    <a routerLink="/heroes">Heroes</a>
+  </nav>
 </div>
 
-<div role="main">
-
-  <app-heroes></app-heroes>
+<div class="main" role="main">
+  <router-outlet></router-outlet>
   <app-messages></app-messages>
 
   <!-- Footer -->
