@@ -9,6 +9,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { StoriesComponent } from './components/stories/stories.component';
 import { StoryDetailComponent } from './components/story-detail/story-detail.component';
 import { MessagesComponent } from './components/messages/messages.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
     declarations: [
@@ -22,7 +23,8 @@ import { MessagesComponent } from './components/messages/messages.component';
         BrowserModule,
         FormsModule,
         HttpClientModule,
-        AppRoutingModule
+        AppRoutingModule,
+        BrowserAnimationsModule
     ],
     providers: [],
     bootstrap: [AppComponent]

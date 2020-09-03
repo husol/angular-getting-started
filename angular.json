@@ -24,8 +24,9 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/hus.css",
-              "src/styles.css"
+              "src/output.css"
             ],
             "scripts": []
           },
@@ -89,8 +90,9 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/hus.css",
-              "src/styles.css"
+              "src/output.css"
             ],
             "scripts": []
           }
