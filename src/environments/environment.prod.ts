@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  STORY_SERVICE: 'https://story.husol.org/api'
 };

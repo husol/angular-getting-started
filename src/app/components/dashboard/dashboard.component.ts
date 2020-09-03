@@ -18,8 +18,8 @@ export class DashboardComponent implements OnInit {
 
   getStories(): void {
     this.storyService.getStories()
-        .subscribe((data: any) => {
-          this.stories = data.result.stories.slice(1, 5)
+        .subscribe(res => {
+          this.stories = res.result.stories.slice(1, 5)
         });
   }
 }

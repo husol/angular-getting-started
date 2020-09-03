@@ -20,8 +20,8 @@ export class StoriesComponent implements OnInit {
 
     getStories(): void {
         this.storyService.getStories()
-            .subscribe((resp: ServiceResponse) => {
-                this.stories = resp.result.stories;
+            .subscribe(res => {
+                this.stories = res.result.stories;
             });
     }
 }

@@ -25,8 +25,8 @@ export class StoryDetailComponent implements OnInit {
   getStory(): void {
     const id = +this.route.snapshot.paramMap.get('id');
     this.storyService.getStoryByID(id)
-        .subscribe((data: any) => {
-          this.story = data.result;
+        .subscribe(res => {
+          this.story = res.result;
         });
   }
 
