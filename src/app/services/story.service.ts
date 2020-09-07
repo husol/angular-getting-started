@@ -1,11 +1,10 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, map, tap } from 'rxjs/operators';
-import { environment } from '../../environments/environment';
-import { ServiceResponse } from '../models/story';
-import { STORIES } from '../mocks/stories';
-import { Observable, of } from 'rxjs';
-import { MessageService } from './message.service';
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {catchError, map, tap} from 'rxjs/operators';
+import {environment} from '../../environments/environment';
+import {ServiceResponse} from '../models/story';
+import {STORIES} from '../mocks/stories';
+import {Observable, of} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +19,7 @@ export class StoryService {
     })
   };
 
-  constructor(private http: HttpClient, private messageService: MessageService) {
+  constructor(private http: HttpClient) {
     this.baseAPI = environment.STORY_SERVICE;
   }
 
@@ -44,31 +43,37 @@ export class StoryService {
 
   // Mock data
   // getStories(): Observable<Story[]> {
-  //   this.messageService.add('StoryService: fetched stories');
   //   return of(STORIES);
   // }
   //
   // getStoryByID(id: number): Observable<Story> {
-  //   this.messageService.add(`StoryService: fetched story id=${id}`);
   //   return of(STORIES.find(story => story.id === id));
   // }
 
   // Call API
-  getStories(): Observable<ServiceResponse> {
-    const url = this.baseAPI + '/stories';
+  getStories(page, limit: number): Observable<ServiceResponse> {
+    let url = this.baseAPI + '/stories';
 
-    return this.http.get<ServiceResponse>(url, this.httpOptions).
-      pipe(
-          catchError(this.handleError<ServiceResponse>('getStories'))
-      );
+    // Paging
+    if (page < 1) {
+      page = 1;
+    }
+    url += `?page=${page}`;
+
+    if (limit > 0) {
+      url += `&limit=${limit}`;
+    }
+
+    return this.http.get<ServiceResponse>(url, this.httpOptions).pipe(
+      catchError(this.handleError<ServiceResponse>('getStories'))
+    );
   }
 
   getStoryByID(id: number): Observable<ServiceResponse> {
     const url = this.baseAPI + `/stories/${id}`;
 
-    return this.http.get<ServiceResponse>(url, this.httpOptions).
-      pipe(
-          catchError(this.handleError<ServiceResponse>('getStoryByID'))
-      );
+    return this.http.get<ServiceResponse>(url, this.httpOptions).pipe(
+      catchError(this.handleError<ServiceResponse>('getStoryByID'))
+    );
   }
 }

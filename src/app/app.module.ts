@@ -3,20 +3,21 @@ import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatButtonModule} from '@angular/material/button';
 import {AppRoutingModule} from './app-routing.module';
+import {NgxPaginationModule} from 'ngx-pagination';
+
+import {LoaderInterceptor} from './interceptors/loader.interceptor';
+import {ToastNotificationService} from './services/toast-notification.service';
+import {LoaderService} from './services/loader.service';
 
 import {AppComponent} from './app.component';
+import {ToastNotificationComponent} from './components/toast-notification/toast-notification.component';
+import {LoaderComponent} from './components/loader/loader.component';
 import {DashboardComponent} from './components/dashboard/dashboard.component';
 import {StoriesComponent} from './components/stories/stories.component';
 import {StoryDetailComponent} from './components/story-detail/story-detail.component';
-import {MessagesComponent} from './components/messages/messages.component';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatButtonModule} from '@angular/material/button';
-import {ToastNotificationService} from './services/toast-notification.service';
-import {ToastNotificationComponent} from './components/toast-notification/toast-notification.component';
-import {LoaderInterceptor} from './interceptors/loader.interceptor';
-import {LoaderService} from './services/loader.service';
-import {LoaderComponent} from './components/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,6 @@ import {LoaderComponent} from './components/loader/loader.component';
     DashboardComponent,
     StoriesComponent,
     StoryDetailComponent,
-    MessagesComponent,
     LoaderComponent,
     ToastNotificationComponent
   ],
@@ -33,13 +33,14 @@ import {LoaderComponent} from './components/loader/loader.component';
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
+    NgxPaginationModule,
     BrowserAnimationsModule,
     MatButtonModule
   ],
   providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true},
     ToastNotificationService,
-    LoaderService,
-    {provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true}
+    LoaderService
   ],
   bootstrap: [AppComponent]
 })

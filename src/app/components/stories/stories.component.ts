@@ -1,28 +1,41 @@
 import {Component, OnInit} from '@angular/core';
-import {Story, ServiceResponse} from '../../models/story';
+import {Story} from '../../models/story';
 import {StoryService} from '../../services/story.service';
 
 @Component({
-    selector: 'app-stories',
-    templateUrl: './stories.component.html',
-    styleUrls: ['./stories.component.css']
+  selector: 'app-stories',
+  templateUrl: './stories.component.html',
+  styleUrls: ['./stories.component.css']
 })
 export class StoriesComponent implements OnInit {
 
-    stories: Story[];
+  public paginatorConfig: any;
+  stories: Story[];
 
-    constructor(private storyService: StoryService) {
-    }
+  constructor(private storyService: StoryService) {
+    this.paginatorConfig = {
+      id: 'paginatorStory',
+      currentPage: 1,
+      itemsPerPage: 20,
+      totalItems: 0
+    };
+  }
 
-    ngOnInit(): void {
-        this.getStories();
-    }
+  ngOnInit(): void {
+    this.getStories(1);
+  }
 
-    getStories(): void {
-        this.storyService.getStories()
-            .subscribe(res => {
-              console.log(res.result);
-                this.stories = res.result.stories;
-            });
-    }
+  getStories(event): void {
+    console.log(event);
+    this.paginatorConfig.currentPage = event;
+    this.storyService.getStories(event, this.paginatorConfig.itemsPerPage)
+      .subscribe(res => {
+        console.log(res.result);
+        this.stories = res.result.stories;
+
+        // Set paginator
+        this.paginatorConfig.currentPage = res.result.page;
+        this.paginatorConfig.totalItems = res.result.count;
+      });
+  }
 }
