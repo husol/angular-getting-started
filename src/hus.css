@@ -141,6 +141,22 @@
     color: #81d4fa !important;
 }
 
+.text-left {
+  text-align: left !important;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.text-right {
+  text-align: right !important;
+}
+
+.text-justify {
+  text-align: justify !important;
+}
+
 .bg-green{
     background-color: #4BB543 !important;
 }

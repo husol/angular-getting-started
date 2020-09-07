@@ -1,4 +1,4 @@
-.PHONY: build run component service test lint
+.PHONY: build run component service test lint tailwind
 
 build:
 	ng build
@@ -25,3 +25,6 @@ test:
 
 lint:
 	ng lint
+
+tailwind:
+	npx tailwindcss build src/styles.css -o src/output.css

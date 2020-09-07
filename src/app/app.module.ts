@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
 
 import {AppComponent} from './app.component';
@@ -11,6 +12,9 @@ import {StoryDetailComponent} from './components/story-detail/story-detail.compo
 import {MessagesComponent} from './components/messages/messages.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule} from '@angular/material/button';
+import {LoaderService} from './services/loader.service';
+import {LoaderComponent} from './components/loader/loader.component';
+import {LoaderInterceptor} from './interceptors/loader.interceptor';
 
 @NgModule({
   declarations: [
@@ -19,6 +23,7 @@ import {MatButtonModule} from '@angular/material/button';
     StoriesComponent,
     StoryDetailComponent,
     MessagesComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +33,10 @@ import {MatButtonModule} from '@angular/material/button';
     BrowserAnimationsModule,
     MatButtonModule
   ],
-  providers: [],
+  providers: [
+    LoaderService,
+    {provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

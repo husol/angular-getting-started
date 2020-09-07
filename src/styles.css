@@ -13,7 +13,8 @@ h2, h3 {
 }
 
 body {
-  margin: 2em;
+  margin: 0;
+  padding: 0;
 }
 
 body, input[type="text"], button {
@@ -32,6 +33,3 @@ body, input[type="text"], button {
 
 @tailwind utilities;
 /* Your own custom utilities and Application-wide Styles */
-.text-center {
-  text-align: center;
-}

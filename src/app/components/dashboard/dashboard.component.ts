@@ -9,17 +9,20 @@ import { StoryService } from '../../services/story.service';
 })
 export class DashboardComponent implements OnInit {
   stories: Story[] = [];
+  loading: boolean;
 
   constructor(private storyService: StoryService) { }
 
   ngOnInit() {
+    this.loading = true;
     this.getStories();
   }
 
   getStories(): void {
     this.storyService.getStories()
         .subscribe(res => {
-          this.stories = res.result.stories.slice(1, 5)
+          this.loading = false;
+          this.stories = res.result.stories.slice(1, 5);
         });
   }
 }
