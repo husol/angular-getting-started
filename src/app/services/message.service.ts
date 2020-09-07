@@ -1,14 +1,28 @@
 import {Injectable} from '@angular/core';
-import {Subject} from 'rxjs';
+import {Observable, Subject} from 'rxjs';
+
+export class Message {
+  content: string;
+  style: string;
+
+  constructor(content, style?) {
+    this.content = content
+    this.style = style || 'info'
+  }
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class MessageService {
 
-  messages: {}[];
+  messages: Message[];
 
-  add(message: {}) {
+  getMessages(): Message[] {
+    return this.messages;
+  }
+
+  add(message: Message) {
     this.messages.push(message);
   }
 

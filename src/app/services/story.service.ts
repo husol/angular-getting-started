@@ -24,12 +24,6 @@ export class StoryService {
     this.baseAPI = environment.STORY_SERVICE;
   }
 
-  /** Log a StoryService message with the MessageService */
-  // tslint:disable-next-line:typedef
-  private log(message: string) {
-    this.messageService.add(`StoryService: ${message}`);
-  }
-
   /**
    * Handle Http operation that failed.
    * Let the app continue.
@@ -42,9 +36,6 @@ export class StoryService {
 
       // TODO: send the error to remote logging infrastructure
       console.error(error); // log to console instead
-
-      // TODO: better job of transforming error for user consumption
-      this.log(`${operation} failed: ${error.message}`);
 
       // Let the app keep running by returning an empty result.
       return of(result as T);
@@ -66,10 +57,8 @@ export class StoryService {
   getStories(): Observable<ServiceResponse> {
     const url = this.baseAPI + '/stories';
 
-    this.log('StoryService: fetched stories');
     return this.http.get<ServiceResponse>(url, this.httpOptions).
       pipe(
-          tap(_ => this.log('fetched stories')),
           catchError(this.handleError<ServiceResponse>('getStories'))
       );
   }
@@ -77,10 +66,8 @@ export class StoryService {
   getStoryByID(id: number): Observable<ServiceResponse> {
     const url = this.baseAPI + `/stories/${id}`;
 
-    this.messageService.add(`StoryService: fetched story id=${id}`);
     return this.http.get<ServiceResponse>(url, this.httpOptions).
       pipe(
-          tap(_ => this.log('fetched story by id')),
           catchError(this.handleError<ServiceResponse>('getStoryByID'))
       );
   }

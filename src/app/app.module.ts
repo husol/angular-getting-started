@@ -12,9 +12,11 @@ import {StoryDetailComponent} from './components/story-detail/story-detail.compo
 import {MessagesComponent} from './components/messages/messages.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule} from '@angular/material/button';
+import {ToastNotificationService} from './services/toast-notification.service';
+import {ToastNotificationComponent} from './components/toast-notification/toast-notification.component';
+import {LoaderInterceptor} from './interceptors/loader.interceptor';
 import {LoaderService} from './services/loader.service';
 import {LoaderComponent} from './components/loader/loader.component';
-import {LoaderInterceptor} from './interceptors/loader.interceptor';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,8 @@ import {LoaderInterceptor} from './interceptors/loader.interceptor';
     StoriesComponent,
     StoryDetailComponent,
     MessagesComponent,
-    LoaderComponent
+    LoaderComponent,
+    ToastNotificationComponent
   ],
   imports: [
     BrowserModule,
@@ -34,6 +37,7 @@ import {LoaderInterceptor} from './interceptors/loader.interceptor';
     MatButtonModule
   ],
   providers: [
+    ToastNotificationService,
     LoaderService,
     {provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true}
   ],
