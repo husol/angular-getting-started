@@ -22,7 +22,7 @@ export class DashboardComponent implements OnInit {
   }
 
   getTopStories(): void {
-    this.storyService.getStories(1, 10)
+    this.storyService.getStories(1, 5)
       .subscribe(res => {
         this.stories = res.result.stories;
       });
