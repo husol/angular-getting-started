@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -8,7 +8,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {AppRoutingModule} from './app-routing.module';
 import {NgxPaginationModule} from 'ngx-pagination';
 
-import {LoaderInterceptor} from './interceptors/loader.interceptor';
+import {LoaderInterceptor} from './helpers/loader.interceptor';
 import {ToastNotificationService} from './services/toast-notification.service';
 import {LoaderService} from './services/loader.service';
 
@@ -18,6 +18,7 @@ import {LoaderComponent} from './components/loader/loader.component';
 import {DashboardComponent} from './components/dashboard/dashboard.component';
 import {StoriesComponent} from './components/stories/stories.component';
 import {StoryDetailComponent} from './components/story-detail/story-detail.component';
+import { AuthComponent } from './components/auth/auth.component';
 
 @NgModule({
   declarations: [
@@ -26,11 +27,13 @@ import {StoryDetailComponent} from './components/story-detail/story-detail.compo
     StoriesComponent,
     StoryDetailComponent,
     LoaderComponent,
-    ToastNotificationComponent
+    ToastNotificationComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
     NgxPaginationModule,

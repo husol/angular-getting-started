@@ -1,4 +1,4 @@
-.PHONY: build run component service test lint tailwind
+.PHONY: build run component service interface guard test lint tailwind
 
 build:
 	ng build
@@ -18,6 +18,20 @@ ifeq ("$(name)", "")
 	ng generate service
 else
 	ng generate service services/$(name)
+endif
+
+interface:
+ifeq ("$(name)", "")
+	ng generate interface
+else
+	ng generate interface models/$(name)
+endif
+
+guard:
+ifeq ("$(name)", "")
+	ng generate guard
+else
+	ng generate guard helpers/$(name)
 endif
 
 test:

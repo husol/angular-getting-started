@@ -26,11 +26,9 @@ export class StoriesComponent implements OnInit {
   }
 
   getStories(event): void {
-    console.log(event);
     this.paginatorConfig.currentPage = event;
     this.storyService.getStories(event, this.paginatorConfig.itemsPerPage)
       .subscribe(res => {
-        console.log(res.result);
         this.stories = res.result.stories;
 
         // Set paginator
