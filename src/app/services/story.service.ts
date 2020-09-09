@@ -10,17 +10,16 @@ import {Observable, of} from 'rxjs';
   providedIn: 'root'
 })
 export class StoryService {
-  baseAPI: string;
+  token = localStorage.getItem('TOKEN');
 
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-      Authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9maWxlIjp7ImlkIjo3LCJlbWFpbCI6ImVucXVpcnlAaHVzb2wub3JnIiwibW9iaWxlIjoiIiwiZ2dfaWQiOm51bGwsImZiX2lkIjpudWxsLCJmdWxsX25hbWUiOiJBbm9ueW1vdXMiLCJhdmF0YXIiOiIiLCJ0b2tlbiI6IiIsInJvbGUiOjEsImxhc3RfbG9naW4iOiIyMDIwLTA5LTA1VDE2OjIzOjA0LjU0MDUxNzk3NyswNzowMCIsInN0YXR1cyI6MX0sImV4cCI6MTU5OTkwMjU4NCwiaXNzIjoiQmV0YSBIdXNvbCJ9.LoDRh0UuuCJKrP4yKSzKikD5cogHWBQtdFZ5jzQwvkQ'
+      Authorization: this.token
     })
   };
 
   constructor(private http: HttpClient) {
-    this.baseAPI = environment.STORY_SERVICE;
   }
 
   /**
@@ -52,7 +51,7 @@ export class StoryService {
 
   // Call API
   getStories(page, limit: number): Observable<ServiceResponse> {
-    let url = this.baseAPI + '/stories';
+    let url = environment.STORY_SERVICE + '/stories';
 
     // Paging
     if (page < 1) {
@@ -70,7 +69,7 @@ export class StoryService {
   }
 
   getStoryByID(id: number): Observable<ServiceResponse> {
-    const url = this.baseAPI + `/stories/${id}`;
+    const url = environment.STORY_SERVICE + `/stories/${id}`;
 
     return this.http.get<ServiceResponse>(url, this.httpOptions).pipe(
       catchError(this.handleError<ServiceResponse>('getStoryByID'))
