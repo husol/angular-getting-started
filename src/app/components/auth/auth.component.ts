@@ -23,7 +23,7 @@ export class AuthComponent implements OnInit {
   ) {
     // Redirect to home if already logged in
     if (this.authService.isLoggedIn()) {
-      this.router.navigate(['/']);
+      this.router.navigate(['/dashboard']);
     }
   }
 
