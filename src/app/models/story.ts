@@ -1,4 +1,5 @@
 export interface Story {
-    id: number;
-    name: string;
+  id: number;
+  name: string;
+  author: string;
 }

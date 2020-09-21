@@ -1,14 +1,14 @@
-import { Story } from '../models/story';
+import {Story} from '../models/story';
 
 export const STORIES: Story[] = [
-    { id: 11, name: 'Dr Nice' },
-    { id: 12, name: 'Narco' },
-    { id: 13, name: 'Bombasto' },
-    { id: 14, name: 'Celeritas' },
-    { id: 15, name: 'Magneta' },
-    { id: 16, name: 'RubberMan' },
-    { id: 17, name: 'Dynama' },
-    { id: 18, name: 'Dr IQ' },
-    { id: 19, name: 'Magma' },
-    { id: 20, name: 'Tornado' }
+  {id: 1, name: 'Story 1', author: 'Author A'},
+  {id: 2, name: 'Story 2', author: 'Author B'},
+  {id: 3, name: 'Story 3', author: 'Author C'},
+  {id: 4, name: 'Story 4', author: 'Author A'},
+  {id: 5, name: 'Story 5', author: 'Author D'},
+  {id: 6, name: 'Story 6', author: 'Author B'},
+  {id: 7, name: 'Story 7', author: 'Author 1'},
+  {id: 8, name: 'Story 8', author: 'Author B'},
+  {id: 9, name: 'Story 9', author: 'Author A'},
+  {id: 10, name: 'Story 10', author: 'Author B'}
 ];
