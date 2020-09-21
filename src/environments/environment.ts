@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  STORY_SERVICE: 'https://story.husol.xyz/api'
+  STORY_SERVICE: 'https://story-service.husol.edu.vn/v1'
 };
 
 /*
