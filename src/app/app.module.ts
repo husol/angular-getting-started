@@ -8,6 +8,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {AppRoutingModule} from './app-routing.module';
 import {NgxPaginationModule} from 'ngx-pagination';
 
+import {AuthGuard} from './helpers/auth.guard';
 import {LoaderInterceptor} from './helpers/loader.interceptor';
 import {ToastNotificationService} from './services/toast-notification.service';
 import {LoaderService} from './services/loader.service';
@@ -19,6 +20,14 @@ import {DashboardComponent} from './components/dashboard/dashboard.component';
 import {StoriesComponent} from './components/stories/stories.component';
 import {StoryDetailComponent} from './components/story-detail/story-detail.component';
 import { AuthComponent } from './components/auth/auth.component';
+import { AppLayoutComponent } from './_layout/app-layout/app-layout.component';
+import { SiteLayoutComponent } from './_layout/site-layout/site-layout.component';
+import { AppHeaderComponent } from './_layout/app-header/app-header.component';
+import { SiteHeaderComponent } from './_layout/site-header/site-header.component';
+import { AppFooterComponent } from './_layout/app-footer/app-footer.component';
+import { SiteFooterComponent } from './_layout/site-footer/site-footer.component';
+import { HomeComponent } from './components/home/home.component';
+import { RegisterComponent } from './components/register/register.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +37,15 @@ import { AuthComponent } from './components/auth/auth.component';
     StoryDetailComponent,
     LoaderComponent,
     ToastNotificationComponent,
-    AuthComponent
+    AuthComponent,
+    AppLayoutComponent,
+    SiteLayoutComponent,
+    AppHeaderComponent,
+    SiteHeaderComponent,
+    AppFooterComponent,
+    SiteFooterComponent,
+    HomeComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -42,6 +59,7 @@ import { AuthComponent } from './components/auth/auth.component';
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true},
+    AuthGuard,
     ToastNotificationService,
     LoaderService
   ],

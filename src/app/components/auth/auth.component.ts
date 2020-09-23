@@ -13,6 +13,7 @@ import {ToastNotificationService} from '../../services/toast-notification.servic
 export class AuthComponent implements OnInit {
   authForm: FormGroup;
   isSubmitted = false;
+  return = '';
 
   constructor(
     private toast: ToastNotificationService,
@@ -23,7 +24,7 @@ export class AuthComponent implements OnInit {
   ) {
     // Redirect to home if already logged in
     if (this.authService.isLoggedIn()) {
-      this.router.navigate(['/dashboard']);
+      this.router.navigate(['/admin']);
     }
   }
 
@@ -32,6 +33,10 @@ export class AuthComponent implements OnInit {
       email: ['', Validators.required],
       password: ['', Validators.required]
     });
+
+    // Get the query params
+    this.route.queryParams
+      .subscribe(params => this.return = params.return || '/admin');
   }
 
   // tslint:disable-next-line:typedef
@@ -50,7 +55,7 @@ export class AuthComponent implements OnInit {
       .subscribe(
         data => {
           this.ngOnInit();
-          this.router.navigate(['/dashboard']);
+          this.router.navigateByUrl(this.return);
         },
         error => {
           this.toast.error(error);
