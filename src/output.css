@@ -16495,6 +16495,10 @@ body, input[type="text"], button {
   z-index: 50 !important;
 }
 
+.z-9999 {
+  z-index: 9999 !important;
+}
+
 .z-auto {
   z-index: auto !important;
 }
@@ -35050,6 +35054,10 @@ body, input[type="text"], button {
     z-index: 50 !important;
   }
 
+  .sm\:z-9999 {
+    z-index: 9999 !important;
+  }
+
   .sm\:z-auto {
     z-index: auto !important;
   }
@@ -53571,6 +53579,10 @@ body, input[type="text"], button {
 
   .md\:z-50 {
     z-index: 50 !important;
+  }
+
+  .md\:z-9999 {
+    z-index: 9999 !important;
   }
 
   .md\:z-auto {
@@ -72096,6 +72108,10 @@ body, input[type="text"], button {
     z-index: 50 !important;
   }
 
+  .lg\:z-9999 {
+    z-index: 9999 !important;
+  }
+
   .lg\:z-auto {
     z-index: auto !important;
   }
@@ -90617,6 +90633,10 @@ body, input[type="text"], button {
 
   .xl\:z-50 {
     z-index: 50 !important;
+  }
+
+  .xl\:z-9999 {
+    z-index: 9999 !important;
   }
 
   .xl\:z-auto {

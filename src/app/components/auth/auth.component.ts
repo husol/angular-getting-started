@@ -53,7 +53,7 @@ export class AuthComponent implements OnInit {
 
     this.authService.login(this.authForm.value.email, this.authForm.value.password).pipe(first())
       .subscribe(
-        data => {
+        () => {
           this.ngOnInit();
           this.router.navigateByUrl(this.return);
         },

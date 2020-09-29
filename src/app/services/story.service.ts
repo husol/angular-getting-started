@@ -1,9 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {catchError, map, tap} from 'rxjs/operators';
+import {catchError} from 'rxjs/operators';
 import {environment} from '../../environments/environment';
 import {ServiceResponse} from '../models/service-response';
-import {STORIES} from '../mocks/stories';
 import {Observable, of} from 'rxjs';
 
 @Injectable({

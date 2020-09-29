@@ -28,28 +28,28 @@ export class ToastNotificationService {
     return this.subject.asObservable();
   }
 
-  success(message: string, keepAfterRouteChange = false) {
+  success(message: string, keepAfterRouteChange = false): void {
     this.showNotification(NotificationType.Success, message, keepAfterRouteChange);
   }
 
-  error(message: string, keepAfterRouteChange = false) {
+  error(message: string, keepAfterRouteChange = false): void {
     this.showNotification(NotificationType.Error, message, keepAfterRouteChange);
   }
 
-  info(message: string, keepAfterRouteChange = false) {
+  info(message: string, keepAfterRouteChange = false): void {
     this.showNotification(NotificationType.Info, message, keepAfterRouteChange);
   }
 
-  warn(message: string, keepAfterRouteChange = false) {
+  warn(message: string, keepAfterRouteChange = false): void {
     this.showNotification(NotificationType.Warning, message, keepAfterRouteChange);
   }
 
-  showNotification(type: NotificationType, message: string, keepAfterRouteChange = false) {
+  showNotification(type: NotificationType, message: string, keepAfterRouteChange = false): void {
     this.keepAfterRouteChange = keepAfterRouteChange;
-    this.subject.next(<Notification> {type: type, message: message});
+    this.subject.next({type, message} as Notification);
   }
 
-  clear() {
+  clear(): void {
     this.subject.next();
   }
 }

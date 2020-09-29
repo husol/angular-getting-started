@@ -9,13 +9,13 @@ import {ToastNotificationService} from '../../services/toast-notification.servic
   styleUrls: ['./toast-notification.component.css']
 })
 
-export class ToastNotificationComponent {
+export class ToastNotificationComponent implements OnInit{
   notifications: Notification[] = [];
 
   constructor(public notificationService: ToastNotificationService) {
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.notificationService.getAlert().subscribe((alert: Notification) => {
       this.notifications = [];
       if (!alert) {
@@ -29,12 +29,12 @@ export class ToastNotificationComponent {
     });
   }
 
-  removeNotification(notification: Notification) {
+  removeNotification(notification: Notification): void {
     this.notifications = this.notifications.filter(x => x !== notification);
   }
 
   /* Set css class for Alert -- Called from alert component */
-  cssClass(notification: Notification) {
+  cssClass(notification: Notification): any {
     if (!notification) {
       return;
     }
