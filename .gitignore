@@ -2,6 +2,7 @@
 
 # Common
 package-lock.json
+output.css
 
 # compiled output
 /dist
