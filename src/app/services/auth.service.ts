@@ -21,8 +21,7 @@ export class AuthService {
     return this.currentUserSubject.value;
   }
 
-  // tslint:disable-next-line:typedef
-  login(email: string, password: string) {
+  login(email: string, password: string): any {
     return this.http.post<any>(`${environment.STORY_SERVICE}/auth`, {email, password})
       .pipe(map(res => {
         // Store user details and jwt token in local storage to keep user logged in between page refresh
@@ -30,21 +29,20 @@ export class AuthService {
           localStorage.setItem('TOKEN', res.result.token);
           localStorage.setItem('currentUser', JSON.stringify(res.result.info));
           this.currentUserSubject.next(res.result.info);
-          return res.result.info;
         }
+
+        return res;
       }));
   }
 
-  // tslint:disable-next-line:typedef
-  logout() {
+  logout(): void {
     // Remove user from local storage to log user out
     localStorage.removeItem('TOKEN');
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
   }
 
-  // tslint:disable-next-line:typedef
-  isLoggedIn() {
+  isLoggedIn(): boolean {
     return localStorage.getItem('TOKEN') !== null;
   }
 }

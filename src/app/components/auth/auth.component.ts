@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../../services/auth.service';
 import {first} from 'rxjs/operators';
 import {ToastNotificationService} from '../../services/toast-notification.service';
@@ -20,8 +20,12 @@ export class AuthComponent implements OnInit {
     private authService: AuthService,
     private route: ActivatedRoute,
     private router: Router,
-    private formBuilder: FormBuilder,
   ) {
+    this.authForm = new FormGroup({
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required, Validators.minLength(8)])
+    });
+
     // Redirect to home if already logged in
     if (this.authService.isLoggedIn()) {
       this.router.navigate(['/admin']);
@@ -29,36 +33,30 @@ export class AuthComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.authForm = this.formBuilder.group({
-      email: ['', Validators.required],
-      password: ['', Validators.required]
-    });
-
     // Get the query params
     this.route.queryParams
       .subscribe(params => this.return = params.return || '/admin');
   }
 
-  // tslint:disable-next-line:typedef
-  get formControls() {
+  get formControls(): any {
     return this.authForm.controls;
   }
 
-  // tslint:disable-next-line:typedef
-  signIn() {
+  signIn(): void {
     this.isSubmitted = true;
     if (this.authForm.invalid) {
       return;
     }
 
     this.authService.login(this.authForm.value.email, this.authForm.value.password).pipe(first())
-      .subscribe(
-        () => {
-          this.ngOnInit();
-          this.router.navigateByUrl(this.return);
-        },
-        error => {
-          this.toast.error(error);
-        });
+      .subscribe(data => {
+        if (data.status === 'error') {
+          this.toast.error(data.message);
+          return;
+        }
+
+        this.ngOnInit();
+        this.router.navigateByUrl(this.return);
+      });
   }
 }
