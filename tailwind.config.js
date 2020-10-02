@@ -1,9 +1,15 @@
 module.exports = {
   important: true,
-  purge: [
-    './src/**/*.html',
-    './src/**/*.js',
-  ],
+  future: {
+    removeDeprecatedGapUtilities: true,
+    purgeLayersByDefault: true,
+  },
+  mode: 'layers',
+  purge: {
+    mode: 'layers',
+    content: ['./src/**/*.html', './src/**/*.js'],
+    layers: ['utilities'],
+  },
   theme: {
     extend: {
       opacity: {
@@ -16,11 +22,14 @@ module.exports = {
         '80': '.8',
         '90': '.9',
       },
+      transformOrigin: {
+        "0": "0%",
+      },
       zIndex: {
-        '9999': '9999',
-      }
+        "-1": "-1",
+      },
     },
   },
-  variants: {},
+  variants: {borderColor: ["responsive", "hover", "focus", "focus-within"]},
   plugins: [],
 }
